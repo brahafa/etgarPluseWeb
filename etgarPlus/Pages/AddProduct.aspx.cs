@@ -205,7 +205,7 @@ namespace etgarPlus.Pages
 
                 }
                 string fileName = System.IO.Path.GetFileName(FileUpload1.PostedFile.FileName);
-                string path = Server.MapPath("~/images/" + fileName);
+                string path = Server.MapPath("C:/images/" + fileName);
                 FileUpload1.PostedFile.SaveAs(path);
                 Console.WriteLine(fileName);
                 string fileName2 = Global.uploadImage(path, produc +"_"+ DateTime.Now.ToString().Replace("/","_"));
