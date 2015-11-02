@@ -1,0 +1,84 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="etgarPlus.Pages.SiteMaster" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <script src="//code.jquery.com/jquery-1.11.0.js" type="text/javascript"></script>
+    <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js" type="text/javascript"></script>
+    <script src="../Scripts/MainScript.js" type="text/javascript"></script>
+
+    <title><%: Page.Title %> - אתגר פלוס</title>
+
+    <asp:PlaceHolder runat="server">
+        <%: Scripts.Render("~/bundles/modernizr") %>
+    </asp:PlaceHolder>
+    <webopt:BundleReference runat="server" Path="../Content/style.css" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+</head>
+<body>
+    <%--<form id="form1" runat="server">--%>
+    <div id="container">
+
+        <div id="header">
+            <div id="title">
+                <div id="logo">
+                    <img alt="logo" class="auto-style1" id="auto-style1" src="../images/logo.png" />
+                </div>
+            </div>
+        </div>
+         <img alt="logo" id="MainImage"  class="MainImage" src="../images/3.png" />
+        <div id="menu" runat="server">
+            <ul>
+                <li name="publicUser" class="publicUser" runat="server"><a href="../Pages/Main" class="current">דף הבית</a></li>
+                <li class="publicUser"><a href="http://www.etgarplus.com/על-אתגר-פלוס-השכרת-אופניים/קצת-על-ההיסטוריה/">אודות</a></li>
+                <li class="publicUser"><a href="http://www.etgarplus.com/יצירת-קשר/">צור קשר</a></li>
+                <li id="registerUser" runat="server"><a href="../Pages/AccountPage">החשבון שלי</a></li>
+                <li id="manager" runat="server"><a href="../Pages/ManagerPage">איזור ניהול</a></li>
+            </ul>
+        </div>
+
+        <div id="content">
+            <div id="right_column">
+                <div class="right_col_box" id="loginProp" runat="server">
+                    <h2>כניסת משתמש</h2>
+                    <div>
+                        <a href="../Pages/Login">
+                            <input class="button" type="button" value="התחבר" /></a>
+                        <a href="../Pages/RegisterPage">
+                            <input class="button" type="button" value="הרשם" /></a>
+                    </div>
+                </div>
+                <div class="right_col_box" id="userProp" runat="server">
+                    <h2>שלום</h2>
+                    <div>
+                        <h3>
+                            <label id="Name" runat="server"></label>
+                        </h3>
+                    </div>
+                    <div>
+                        <input class="button" type="button" runat="server" onserverclick="logOut" value="התנתק" />
+                    </div>
+                </div>
+                <br />
+                <%if ((Session["Email"] != null) && (etgarPlus.Pages.Main.listBikeToOrder.Count > 0))
+                  {
+                %>
+                <div class="right_col_box">
+                    <h2>סל קניות</h2>
+                    <a href="../Pages/ToOrder">
+                        <input class="button" type="button" value="הצג את סל הקניות" /></a>
+
+                </div>
+                <%} %>
+            </div>
+            <div id="left_column">
+                <asp:ContentPlaceHolder ID="left_column_Body" runat="server">
+                </asp:ContentPlaceHolder>
+            </div>
+        </div>
+        <div id="footer">Copyright © <strong>יעל מובשוביץ, טליה כהן וברכה גולדשמידט</strong></div>
+    </div>
+    <%--</form>--%>
+</body>
+</html>
