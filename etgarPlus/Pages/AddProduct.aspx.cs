@@ -205,13 +205,14 @@ namespace etgarPlus.Pages
 
                 }
                 string fileName = System.IO.Path.GetFileName(FileUpload1.PostedFile.FileName);
-                string path = Server.MapPath("C:/images/" + fileName);
+                string path = "C:\\images\\" + fileName; //Server.MapPath("~/images/" + fileName);
                 FileUpload1.PostedFile.SaveAs(path);
                 Console.WriteLine(fileName);
                 string fileName2 = Global.uploadImage(path, produc +"_"+ DateTime.Now.ToString().Replace("/","_"));
 
-                //fff
-                NewBike.AddNewBike(NewBike.getMaxId(), catego, sub_catego, produc, siz, Specification.Text, color, Convert.ToDouble(RetailPrice.Value), Convert.ToDouble(RegularPrice.Value), Convert.ToDouble(ClubPrice.Value), Convert.ToInt32(Quantity.Value), FileUpload1.FileName, Model.Value);
+                //NewBike.AddNewBike(NewBike.getMaxId(), catego, sub_catego, produc, siz, Specification.Text, color, Convert.ToDouble(RetailPrice.Value), Convert.ToDouble(RegularPrice.Value), Convert.ToDouble(ClubPrice.Value), Convert.ToInt32(Quantity.Value), FileUpload1.FileName, Model.Value);
+                NewBike.AddNewBike(NewBike.getMaxId(), catego, sub_catego, produc, siz, Specification.Text, color, Convert.ToDouble(RetailPrice.Value), Convert.ToDouble(RegularPrice.Value), Convert.ToDouble(ClubPrice.Value), Convert.ToInt32(Quantity.Value), fileName2, Model.Value);
+                
                 resetButton_Click(sender, e);
 
             }
