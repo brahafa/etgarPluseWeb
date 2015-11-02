@@ -1,4 +1,4 @@
-﻿waq<%@ Page Title="דף הבית" Language="C#" MasterPageFile="~/Pages/Site.Master" AutoEventWireup="true" CodeBehind="Main.aspx.cs" Inherits="etgarPlus.Pages.Main" %>
+﻿<%@ Page Title="דף הבית" Language="C#" MasterPageFile="~/Pages/Site.Master" AutoEventWireup="true" CodeBehind="Main.aspx.cs" Inherits="etgarPlus.Pages.Main" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="left_column_Body" runat="server">
     <h1><%: Title %></h1>
