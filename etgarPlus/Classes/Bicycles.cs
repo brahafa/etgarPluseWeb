@@ -53,10 +53,11 @@ namespace etgarPlus.Classes
             _RegularPrice = RegularPrice;
             _ClubPrice = ClubPrice;
             _Quantity = Quantity;
+            
             if (imagePath.Equals(""))
                 _ImagePath = "../Images/DefaultBicycle.jpg";
             else
-                _ImagePath = "../Images/"+imagePath;
+                _ImagePath = imagePath;
         }
         public override String ToString()
         {
