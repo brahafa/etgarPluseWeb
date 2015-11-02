@@ -204,11 +204,11 @@ namespace etgarPlus.Pages
                         Response.Write("<script language=javascript>alert('הוסף שם יצרן חדש');</script>");
 
                 }
-                string path = HttpContext.Current.ApplicationInstance.Server.MapPath("~/images");
-                string fn = System.IO.Path.GetFileName(FileUpload1.PostedFile.FileName);
-                string fileName = System.IO.Path.Combine(path, fn);
+                //string path = HttpContext.Current.ApplicationInstance.Server.MapPath("~/images");
+                string fileName = System.IO.Path.GetFileName(FileUpload1.PostedFile.FileName);
+               // string fileName = System.IO.Path.Combine(path, fn);
                 //FileUpload1.PostedFile.SaveAs(System.IO.Path.Combine(path, fn));
-                //string path = Server.MapPath("~/images/" + fileName);
+                string path = Server.MapPath("~/images/") + fileName;
                 FileUpload1.PostedFile.SaveAs(path);
                 Console.WriteLine(fileName);
                 string fileName2 = Global.uploadImage(path, produc +"_"+ DateTime.Now.ToString().Replace("/","_"));
