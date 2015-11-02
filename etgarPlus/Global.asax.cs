@@ -54,24 +54,25 @@ namespace etgarPlus
                 }
             }
         }
-        internal static String uploadImage(string filePath) 
+        internal static String uploadImage(string filePath, string publicID) 
         {
 
 
             //CloudinaryDotNet.Cloudinary cloudinary = new CloudinaryDotNet.Cloudinary();
-            CloudinaryDotNet.Account account = new CloudinaryDotNet.Account("hmtca4hsp", "551419468127826", "6CRKqZzHmHxqCvpLaObNj2Hmsis");
+            //CloudinaryDotNet.Account account = new CloudinaryDotNet.Account("hmtca4hsp", "551419468127826", "6CRKqZzHmHxqCvpLaObNj2Hmsis");
+            CloudinaryDotNet.Account account = new CloudinaryDotNet.Account("hiisiwhue", "579971361974369", "bHspTdlzXHwF3uoLrEu5yb9a0b0");
 
             CloudinaryDotNet.Cloudinary cloudinary = new CloudinaryDotNet.Cloudinary(account);
             CloudinaryDotNet.Actions.ImageUploadParams uploadParams = new CloudinaryDotNet.Actions.ImageUploadParams()
             {
                 File = new CloudinaryDotNet.Actions.FileDescription(filePath),//@"C:\Users\David\Downloads\etgarPlusWebsite-master\etgarPlusWebsite\etgarPlus\images\1.png"),
-                PublicId = "6"
+                PublicId = publicID
             };
 
             CloudinaryDotNet.Actions.ImageUploadResult uploadResult = cloudinary.Upload(uploadParams);
 
 
-            string url = cloudinary.Api.UrlImgUp.BuildUrl("6" + filePath.Substring(filePath.LastIndexOf(".")));
+            string url = cloudinary.Api.UrlImgUp.BuildUrl(publicID + filePath.Substring(filePath.LastIndexOf(".")));
             return url;
         }
     }

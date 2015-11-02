@@ -97,19 +97,8 @@ namespace etgarPlus.Pages
         protected void submitButton_Click(object sender, EventArgs e)
         {
  
-           // BackgroundUploader bgUploader =  GetUploader();
-            string fileName = System.IO.Path.GetFileName(FileUpload1.PostedFile.FileName);
-            string path = Server.MapPath("~/images/" + fileName);
-            FileUpload1.PostedFile.SaveAs(path);
-            Console.WriteLine(fileName);
-            string fileName2 = Global.uploadImage(path);
+            
 
-
-            //FileUpload1.PostedFile.SaveAs(Server.MapPath("~/images/" + fileName));
-            // Session["image"] = "~/images/" + fileName;
-            // img1.ImageUrl = "~/images/" + fileName;
-            //Response.Redirect("AddProduct.aspx");
-            // Debug.WriteLine(RetailPrice.Value);
 
             if (RetailPrice.Value.ToString().Equals(""))
             {
@@ -215,7 +204,11 @@ namespace etgarPlus.Pages
                         Response.Write("<script language=javascript>alert('הוסף שם יצרן חדש');</script>");
 
                 }
-
+                string fileName = System.IO.Path.GetFileName(FileUpload1.PostedFile.FileName);
+                string path = Server.MapPath("~/images/" + fileName);
+                FileUpload1.PostedFile.SaveAs(path);
+                Console.WriteLine(fileName);
+                string fileName2 = Global.uploadImage(path, produc +"_"+ DateTime.Now.ToString().Replace("/","_"));
 
 
                 NewBike.AddNewBike(NewBike.getMaxId(), catego, sub_catego, produc, siz, Specification.Text, color, Convert.ToDouble(RetailPrice.Value), Convert.ToDouble(RegularPrice.Value), Convert.ToDouble(ClubPrice.Value), Convert.ToInt32(Quantity.Value), FileUpload1.FileName, Model.Value);
