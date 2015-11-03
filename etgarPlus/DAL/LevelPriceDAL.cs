@@ -28,6 +28,7 @@ namespace etgarPlus.DAL
             sb.UserID = "qgdrzcnrgssnqeml";
             sb.Password = "vTYDtKuwUGF6a6QZQ4rPcKGqRgGTXZgzzmZHGudb3T5vHHQrcZWSZVyTmHUndJF3";
             sb.Database = "dbcea766eed14f4cde9659a53500832f5d";
+            sb.CharacterSet = "utf8";
             try
             {
                 con = new MySqlConnection(sb.ToString());

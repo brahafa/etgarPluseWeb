@@ -150,7 +150,7 @@ namespace etgarPlus.Pages
                     if (strNewItem != null)
                     {
                         Color_Bl.AddNeColor(Color_Bl.getMaxIdColor(), strNewItem);
-                        color = Color_Bl.getMaxIdColor();
+                        color = Color_Bl.getMaxIdColor()-1;
                     }
                     if (elseColor.Value.Length == 0)
                         Response.Write("<script language=javascript>alert('הוסף צבע חדש');</script>");
@@ -162,7 +162,7 @@ namespace etgarPlus.Pages
                     if (strNewItem != null)
                     {
                         categorBl.AddNeCategory(categorBl.getMaxIdcategory(), strNewItem);
-                        catego = categorBl.getMaxIdcategory();
+                        catego = categorBl.getMaxIdcategory()-1;
                     }
                     if (elseCategory.Value.Length==0)
                     Response.Write("<script language=javascript>alert('הוסף קטגוריה חדשה');</script>");
@@ -174,7 +174,7 @@ namespace etgarPlus.Pages
                     if (strNewItem != null)
                     {
                         subCategoryBl.AddNeSubCategory(subCategoryBl.getMaxIdSubcategory(), strNewItem);
-                        sub_catego = subCategoryBl.getMaxIdSubcategory();
+                        sub_catego = subCategoryBl.getMaxIdSubcategory()-1;
                     }
                     if (elseSubCategory.Value.Length == 0)
                         Response.Write("<script language=javascript>alert('הוסף תת קטגוריה חדשה');</script>");
@@ -186,7 +186,7 @@ namespace etgarPlus.Pages
                     if (strNewItem != null)
                     {
                         sizeBl.AddNeSise(sizeBl.getMaxIdSize(), strNewItem);
-                        siz = sizeBl.getMaxIdSize();
+                        siz = sizeBl.getMaxIdSize()-1;
                     }
                     if (elseSize.Value.Length == 0)
                         Response.Write("<script language=javascript>alert(הוסף גודל חדשה');</script>");
@@ -198,7 +198,7 @@ namespace etgarPlus.Pages
                     if (strNewItem != null)
                     {
                         ProducerBL.AddNeproducer(ProducerBL.getMaxIdProducer(), strNewItem);
-                        produc = ProducerBL.getMaxIdProducer();
+                        produc = ProducerBL.getMaxIdProducer()-1;
                     }
                     if (elseProducer.Value.Length == 0)
                         Response.Write("<script language=javascript>alert('הוסף שם יצרן חדש');</script>");
