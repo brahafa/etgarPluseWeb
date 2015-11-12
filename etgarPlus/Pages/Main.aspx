@@ -73,6 +73,10 @@
                 <asp:Label ID="PriceLabel" runat="server" Text="מחיר מומלץ לצרכן:"></asp:Label>
                 <asp:Label ID="Price" runat="server" Text="test"></asp:Label>
                 <asp:Label ID="PriceLabel2" runat="server" Text="שח"></asp:Label>
+                <br />
+                 <label class="MyAccountLabel">פרטים נוספים:</label>
+                 <asp:TextBox ID="Specification"  textmode="MultiLine" runat="server"></asp:TextBox>
+       
                 <%if (Session["Email"] != null)
                   { %>
                 <br /><br /><br /><hr />

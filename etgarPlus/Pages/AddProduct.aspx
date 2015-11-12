@@ -4,7 +4,7 @@
     <h1><%: Title %></h1>
     <form id="addProd" runat="server" enctype="multipart/form-data">
         <div id="producer">
-            <label class="MyAccountLabel">*שם יצרן:</label>
+            <label class="MyAccountLabel">*כותרת:</label>
             <select class="DropeDownListServer" id="selected_producer" name="selected_producer" runat="server">
                 <option value="-1">בחר יצרן:</option>
 
@@ -66,21 +66,19 @@
             
 
         </div>
+            <div  style='display:inline '>
+            <label class="MyAccountLabel">פרטים נוספים:</label>
+             <asp:TextBox ID="Specification" width="235px" height="84px" textmode="MultiLine" runat="server"></asp:TextBox>
+        </div>
         <div>
             <label class="MyAccountLabel">תמונה:</label>
            
             <asp:FileUpload ID="FileUpload1" runat="server" />
-            <%--<asp:Button ID="Button1" runat="server" Text="Upload" OnClick="UplodeImg_Click" />--%>
-            <asp:Button ID="Browse" runat="server" OnClick="Browse_Click" Text="Browse..." />
-            <asp:TextBox ID="FileName" runat="server"></asp:TextBox>
         </div>
-        <div  style='display:none '>
-            <label class="MyAccountLabel">פרטים נוספים:</label>
-            <asp:TextBox ID="Specification" runat="server"></asp:TextBox>
-        </div>
+    
         <div>
-            <asp:Button runat="server" OnClick="submitButton_Click" ID="submitButton" type="submit" name="Submit" value="submit" Text="הוסף" /><!--  onclick="alert('המתכון התקבל'); window.location='AddRecipeUser'" style="cursor: pointer; " />-->
-            <asp:Button runat="server" name="resetutton" Text="מחיקה" value="reset" ID="btoonReset" OnClientClick="resetButtonJS_Click()" OnClick="resetButton_Click" />
+            <asp:Button runat="server" CssClass="addProductSubmit" OnClick="submitButton_Click" ID="submitButton" type="submit" name="Submit" value="submit" Text="הוסף" />
+            <asp:Button runat="server" CssClass="addProductSubmit" name="resetutton" Text="מחיקה" value="reset" ID="btoonReset" OnClientClick="resetButtonJS_Click()" OnClick="resetButton_Click" />
         </div>
     </form>
 </asp:Content>

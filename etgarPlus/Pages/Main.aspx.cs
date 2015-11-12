@@ -113,6 +113,7 @@ namespace etgarPlus.Pages
             Size.Text = sizeBL.getSize(listBike[i]._size);
             Color.Text = colorBL.getColorById(listBike[i]._colorId);
             Quantity.Text = listBike[i]._Quantity.ToString();
+            Specification.Text = listBike[i]._Specification.ToString();
             if (Convert.ToInt32(Session["Level"]) == 1)
             {
                 Price.Text = (listBike[i]._RegularPrice * Convert.ToDouble(System.Configuration.ConfigurationManager.AppSettings["sitonai"])).ToString();

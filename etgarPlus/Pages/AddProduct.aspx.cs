@@ -13,36 +13,53 @@ using System.Windows.Controls;
 using CloudinaryDotNet;
 using CloudinaryDotNet.Actions;
 using System.IO;
+using etgarPlus.Classes;
+using etgarPlus.Logic;
 namespace etgarPlus.Pages
 {
     public partial class AddProduct : System.Web.UI.Page
     {
-        etgarPlus.Logic.BicycleBL NewBike = new Logic.BicycleBL();
-        int IdBike = 50;
-        etgarPlus.Logic.SubCategoryBL subCategoryBl = new Logic.SubCategoryBL();
-        etgarPlus.Logic.ProducerBL ProducerBL = new Logic.ProducerBL();
-        etgarPlus.Logic.CategoryBL categorBl = new Logic.CategoryBL();
-        etgarPlus.Logic.SizeBL sizeBl = new Logic.SizeBL();
-        etgarPlus.Logic.ColorBL Color_Bl = new etgarPlus.Logic.ColorBL();
+        etgarPlus.Logic.BicycleBL NewBike = new BicycleBL();
+        SubCategoryBL subCategoryBL = new SubCategoryBL();
+        ProducerBL producerBL = new ProducerBL();
+        CategoryBL categoryBl = new CategoryBL();
+        SizeBL sizeBL = new SizeBL();
+        ColorBL Color_Bl = new ColorBL();
+        BicycleBL bicycleBL = new BicycleBL();
+        List<Producer> lisProducer;
+
+        List<Category> listCategory;
+
+        List<SubCategory> listSubCategory ;
+
+        List<etgarPlus.Classes.Size> lisSize ;
+
+        List<etgarPlus.Classes.Color> lisColor;
+
        
 
         protected void Page_Load(object sender, EventArgs e)
         {  
 
-            etgarPlus.Logic.ProducerBL producerBL = new etgarPlus.Logic.ProducerBL();
-            List<etgarPlus.Classes.Producer> lisProducer = producerBL.getAllProducer();
-
-            etgarPlus.Logic.CategoryBL categoryBL = new etgarPlus.Logic.CategoryBL();
-            List<etgarPlus.Classes.Category> listCategory = categoryBL.getAllCategory();
-
-            etgarPlus.Logic.SubCategoryBL subCategoryBL = new etgarPlus.Logic.SubCategoryBL();
-            List<etgarPlus.Classes.SubCategory> listSubCategory = subCategoryBL.getAllSubCategory();
-
-            etgarPlus.Logic.SizeBL sizeBL = new etgarPlus.Logic.SizeBL();
+            List<Producer> lisProducer = producerBL.getAllProducer();
+            List<Category> listCategory = categoryBl.getAllCategory();
+            List<SubCategory> listSubCategory = subCategoryBL.getAllSubCategory();
             List<etgarPlus.Classes.Size> lisSize = sizeBL.getAllSizes();
+            List<etgarPlus.Classes.Color> lisColor = Color_Bl.getAllColor();
 
-            etgarPlus.Logic.ColorBL bicycleBL = new etgarPlus.Logic.ColorBL();
-            List<etgarPlus.Classes.Color> lisColor = bicycleBL.getAllColor();
+            buildSelected();
+
+        }
+
+
+        public void buildSelected()
+        {
+
+           lisProducer = producerBL.getAllProducer();
+           listCategory = categoryBl.getAllCategory();
+           listSubCategory = subCategoryBL.getAllSubCategory();
+           lisSize = sizeBL.getAllSizes();
+           lisColor = Color_Bl.getAllColor();
 
 
             foreach (etgarPlus.Classes.Producer p in lisProducer)
@@ -75,6 +92,35 @@ namespace etgarPlus.Pages
         }
         protected void resetButton_Click(object sender, EventArgs e)
         {
+            if (selected_producer.Items.Count > 1)
+            {
+                for (int i = selected_producer.Items.Count - 1; i > 0; i--)
+                    selected_producer.Items.Remove(selected_producer.Items[i]);
+            }
+
+            if (selected_Category.Items.Count > 1)
+            {
+                for (int i = selected_Category.Items.Count - 1; i > 0; i--)
+                    selected_Category.Items.Remove(selected_Category.Items[i]);
+            }
+
+            if (selected_SubCategory.Items.Count > 1)
+            {
+                for (int i = selected_SubCategory.Items.Count - 1; i > 0; i--)
+                    selected_SubCategory.Items.Remove(selected_SubCategory.Items[i]);
+            }
+
+            if (selected_Size.Items.Count > 1)
+            {
+                for (int i = selected_Size.Items.Count - 1; i > 0; i--)
+                    selected_Size.Items.Remove(selected_Size.Items[i]);
+            }
+            if (selected_Color.Items.Count > 1)
+            {
+                for (int i = selected_Color.Items.Count - 1; i > 0; i--)
+                    selected_Color.Items.Remove(selected_Color.Items[i]);
+            }
+
             selected_Color.Value = "-1";
             selected_producer.Value = "-1";
             selected_Size.Value = "-1";
@@ -88,7 +134,7 @@ namespace etgarPlus.Pages
             FileUpload1.Attributes.Clear();
             Specification.Text = "";
 
-
+            buildSelected();
         }
 
 
@@ -96,10 +142,6 @@ namespace etgarPlus.Pages
 
         protected void submitButton_Click(object sender, EventArgs e)
         {
- 
-            
-
-
             if (RetailPrice.Value.ToString().Equals(""))
             {
                 RetailPrice.Value = "0";
@@ -118,7 +160,7 @@ namespace etgarPlus.Pages
             }
             if (Specification.Text == "")
             {
-                Specification.Text = "אחר";
+                Specification.Text = "אין פירוט";
             }
             int catego = Convert.ToInt32(selected_Category.Value);
             int sub_catego = Convert.ToInt32(selected_SubCategory.Value);
@@ -161,8 +203,8 @@ namespace etgarPlus.Pages
                     strNewItem = elseCategory.Value.ToString();
                     if (strNewItem != null)
                     {
-                        categorBl.AddNeCategory(categorBl.getMaxIdcategory(), strNewItem);
-                        catego = categorBl.getMaxIdcategory()-1;
+                        categoryBl.AddNeCategory(categoryBl.getMaxIdcategory(), strNewItem);
+                        catego = categoryBl.getMaxIdcategory() - 1;
                     }
                     if (elseCategory.Value.Length==0)
                     Response.Write("<script language=javascript>alert('הוסף קטגוריה חדשה');</script>");
@@ -173,8 +215,8 @@ namespace etgarPlus.Pages
                     strNewItem = elseSubCategory.Value.ToString();
                     if (strNewItem != null)
                     {
-                        subCategoryBl.AddNeSubCategory(subCategoryBl.getMaxIdSubcategory(), strNewItem);
-                        sub_catego = subCategoryBl.getMaxIdSubcategory()-1;
+                        subCategoryBL.AddNeSubCategory(subCategoryBL.getMaxIdSubcategory(), strNewItem);
+                        sub_catego = subCategoryBL.getMaxIdSubcategory() - 1;
                     }
                     if (elseSubCategory.Value.Length == 0)
                         Response.Write("<script language=javascript>alert('הוסף תת קטגוריה חדשה');</script>");
@@ -185,8 +227,8 @@ namespace etgarPlus.Pages
                     strNewItem = elseSize.Value.ToString();
                     if (strNewItem != null)
                     {
-                        sizeBl.AddNeSise(sizeBl.getMaxIdSize(), strNewItem);
-                        siz = sizeBl.getMaxIdSize()-1;
+                        sizeBL.AddNeSise(sizeBL.getMaxIdSize(), strNewItem);
+                        siz = sizeBL.getMaxIdSize() - 1;
                     }
                     if (elseSize.Value.Length == 0)
                         Response.Write("<script language=javascript>alert(הוסף גודל חדשה');</script>");
@@ -197,26 +239,30 @@ namespace etgarPlus.Pages
                     strNewItem = elseProducer.Value.ToString();
                     if (strNewItem != null)
                     {
-                        ProducerBL.AddNeproducer(ProducerBL.getMaxIdProducer(), strNewItem);
-                        produc = ProducerBL.getMaxIdProducer()-1;
+                        producerBL.AddNeproducer(producerBL.getMaxIdProducer(), strNewItem);
+                        produc = producerBL.getMaxIdProducer()-1;
                     }
                     if (elseProducer.Value.Length == 0)
                         Response.Write("<script language=javascript>alert('הוסף שם יצרן חדש');</script>");
 
                 }
-                //string path = HttpContext.Current.ApplicationInstance.Server.MapPath("~/images");
-                string fileName = System.IO.Path.GetFileName(FileUpload1.PostedFile.FileName);
-               // string fileName = System.IO.Path.Combine(path, fn);
-                //FileUpload1.PostedFile.SaveAs(System.IO.Path.Combine(path, fn));
-                string path = Server.MapPath("~/images/") + fileName;
-                FileUpload1.PostedFile.SaveAs(path);
-                Console.WriteLine(fileName);
-                string fileName2 = Global.uploadImage(path, produc +"_"+ DateTime.Now.ToString().Replace("/","_"));
-
+                 string fileName="";
+                 string path="";
+                 string fileName2 = "";
+                 if (FileUpload1.HasFile)
+                 {
+                     fileName = System.IO.Path.GetFileName(FileUpload1.PostedFile.FileName);
+                     path = Server.MapPath("~/images/") + fileName;
+                     FileUpload1.PostedFile.SaveAs(path);
+                     Console.WriteLine(fileName);
+                     fileName2 = Global.uploadImage(path, produc + "_" + DateTime.Now.ToString().Replace("/", "_"));
+                 }
                 //NewBike.AddNewBike(NewBike.getMaxId(), catego, sub_catego, produc, siz, Specification.Text, color, Convert.ToDouble(RetailPrice.Value), Convert.ToDouble(RegularPrice.Value), Convert.ToDouble(ClubPrice.Value), Convert.ToInt32(Quantity.Value), FileUpload1.FileName, Model.Value);
                 NewBike.AddNewBike(NewBike.getMaxId(), catego, sub_catego, produc, siz, Specification.Text, color, Convert.ToDouble(RetailPrice.Value), Convert.ToDouble(RegularPrice.Value), Convert.ToDouble(ClubPrice.Value), Convert.ToInt32(Quantity.Value), fileName2, Model.Value);
                 
                 resetButton_Click(sender, e);
+               // clearSelect();
+
 
             }
         }
