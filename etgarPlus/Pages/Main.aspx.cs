@@ -37,7 +37,6 @@ namespace etgarPlus.Pages
             producerBL = new ProducerBL();
             sizeBL = new SizeBL();
             colorBL = new ColorBL();
-            
             if (Session["listBike"] != null)
             {
 
@@ -48,44 +47,46 @@ namespace etgarPlus.Pages
             {
                 listBike = bicycleBL.getAllBike();
             }
-
             List<Producer> listProducer = producerBL.getAllProducer();
             List<Category> listCategory = categoryBL.getAllCategory();
             List<SubCategory> listSubCategory = subCategoryBL.getAllSubCategory();
             List<Size> listSize = sizeBL.getAllSizes();
             List<Color> listColor = colorBL.getAllColor();
+            if (!Page.IsPostBack)
+            {
+                
 
-            selected_producer.Items.Clear();
-            selected_producer.Items.Add(new ListItem("שם היצרן", "-1"));
-            foreach (Producer p in listProducer)
-            {
-                selected_producer.Items.Add(new ListItem(p._producer, p._id.ToString()));
+                selected_producer.Items.Clear();
+                selected_producer.Items.Add(new ListItem("שם היצרן", "-1"));
+                foreach (Producer p in listProducer)
+                {
+                    selected_producer.Items.Add(new ListItem(p._producer, p._id.ToString()));
+                }
+                selected_Category_Main.Items.Clear();
+                selected_Category_Main.Items.Add(new ListItem("בחר קטגוריה", "-1"));
+                foreach (Category c in listCategory)
+                {
+                    selected_Category_Main.Items.Add(new ListItem(c._category, c._id.ToString()));
+                }
+                selected_SubCategory_main.Items.Clear();
+                selected_SubCategory_main.Items.Add(new ListItem("בחר תת קטגוריה", "-1"));
+                foreach (SubCategory s in listSubCategory)
+                {
+                    selected_SubCategory_main.Items.Add(new ListItem(s._subCategory, s._id.ToString()));
+                }
+                selected_Size.Items.Clear();
+                selected_Size.Items.Add(new ListItem("בחר גודל", "-1"));
+                foreach (Size si in listSize)
+                {
+                    selected_Size.Items.Add(new ListItem(si._size, si._id.ToString()));
+                }
+                selected_Color.Items.Clear();
+                selected_Color.Items.Add(new ListItem("בחר צבע", "-1"));
+                foreach (Color c in listColor)
+                {
+                    selected_Color.Items.Add(new ListItem(c._color, c._id.ToString()));
+                }
             }
-            selected_Category_Main.Items.Clear();
-            selected_Category_Main.Items.Add(new ListItem("בחר קטגוריה", "-1"));
-            foreach (Category c in listCategory)
-            {
-                selected_Category_Main.Items.Add(new ListItem(c._category, c._id.ToString()));
-            }
-            selected_SubCategory_main.Items.Clear();
-            selected_SubCategory_main.Items.Add(new ListItem("בחר תת קטגוריה", "-1"));
-            foreach (SubCategory s in listSubCategory)
-            {
-                selected_SubCategory_main.Items.Add(new ListItem(s._subCategory, s._id.ToString()));
-            }
-            selected_Size.Items.Clear();
-            selected_Size.Items.Add(new ListItem("בחר גודל", "-1"));
-            foreach (Size si in listSize)
-            {
-                selected_Size.Items.Add(new ListItem(si._size, si._id.ToString()));
-            }
-            selected_Color.Items.Clear();
-            selected_Color.Items.Add(new ListItem("בחר צבע", "-1"));
-            foreach (Color c in listColor)
-            {
-                selected_Color.Items.Add(new ListItem(c._color, c._id.ToString()));
-            }
-
         }
         //protected void bikeProperties(int bikeId)
         //{
@@ -104,7 +105,7 @@ namespace etgarPlus.Pages
                 if (listBike[i]._Id == Id)
                     break;
             }
-            
+
             Name.Text = producerBL.GetProducer(listBike[i]._Name);
             Image1.ImageUrl = listBike[i]._ImagePath;
             Model.Text = listBike[i]._Model;
@@ -132,7 +133,7 @@ namespace etgarPlus.Pages
             }
             selectQuantity.Items.Clear();
             selectQuantity.Items.Add(new ListItem("בחר כמות", "-1"));
-            for (int j = 1; j <= listBike[i]._Quantity; j++ )
+            for (int j = 1; j <= listBike[i]._Quantity; j++)
             {
 
                 selectQuantity.Items.Add(new ListItem(j.ToString(), j.ToString()));
@@ -143,7 +144,7 @@ namespace etgarPlus.Pages
             fade2.Style.Add("display", "none");
 
         }
-        
+
         protected void search_Click(object sender, EventArgs e)
         {
             listBike = new List<Bicycles>();
@@ -235,10 +236,10 @@ namespace etgarPlus.Pages
         protected void addToList_Click(object sender, EventArgs e)
         {
             int Id = Convert.ToInt32(bikeId.Value);
-            int quantity=0;
+            int quantity = 0;
             try
             {
-               quantity = Convert.ToInt32(selectQuantity.Value);
+                quantity = Convert.ToInt32(selectQuantity.Value);
             }
             catch (Exception ex) { return; }
             Bicycles bike = new etgarPlus.Classes.Bicycles();
