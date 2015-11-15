@@ -5,13 +5,14 @@
     <form id="form1" runat="server">
         <hr />
         <div class="searchDiv">
+
             <select class="searchitems" id="selected_producer" name="selected_producer" runat="server">
                 <option value="-1">בחר יצרן</option>
             </select>
-            <select class="searchitems" id="selected_Category_Main" runat="server">
+            <select class="searchitems" id="selected_Category_Main" name="selected_Category_Main" runat="server">
                 <option value="-1">בחר קטגוריה</option>
             </select>
-            <select class="searchitems" id="selected_SubCategory_main" runat="server">
+            <select class="searchitems" id="selected_SubCategory_main" name="selected_SubCategory_main" runat="server">
                 <option value="-1">בחר תת קטגוריה</option>
             </select>
             <select class="searchitems" id="selected_Size" runat="server">
@@ -24,7 +25,7 @@
             <input class="searchitems" type="text" id="FromPriceInput" runat="server" placeholder="0" />
             <asp:Label CssClass="searchitems" ID="LabelToPrice" runat="server" Text="עד מחיר:" Width="125px"></asp:Label>
             <input class="searchitems" type="text" id="ToPriceInput" runat="server" placeholder="0" />
-            <asp:Button id="searchButton" CssClass="searchitems" runat="server" OnClick="search_Click" Text="סנן" Width="125px" />
+            <asp:Button id="searchButton" CssClass="searchitems" runat="server" onclick="search_Click" Text="סנן" Width="125px" />
 
             <%--<select class="DropeDownListServer" id="tessst" runat="server">
                 <option value="-1">תוצאה:</option>
