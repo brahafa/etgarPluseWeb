@@ -301,8 +301,6 @@ select {
     position: relative;
     /* top: 50%; */
     right: 22%;
-
-
 }
 /* end AddProducer     */
 /*--- Left Column---*/
@@ -382,6 +380,15 @@ select {
             color: #cccc66;
         }
 /* ----- mainView ----- */
+.Specification{
+    width: 435px;
+    height: 70px;
+    font-size: 18px;
+    font-family: cursive;
+    color: purple;
+    /* margin-right: 133px; */
+    border-color: purple;
+}
 
 #mainView {
     float: right;
@@ -417,14 +424,17 @@ div#window {
     opacity: .80;
     filter: alpha(opacity=80);
 }
-
+#left_column_Body_Image1{
+    height: 155px;
+    width: 212px;
+}
 .white_content {
     display: none;
     position: fixed;
-    top: 25%;
-    left: 35%;
-    width: 30%;
-    height: 50%;
+    top: 14%;
+    left: 33%;
+        width: 34%;
+    height: 61%;
     padding: 16px;
     border: 16px solid purple;
     background-color: white;

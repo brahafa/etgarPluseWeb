@@ -165,7 +165,8 @@ namespace etgarPlus.Pages
             int catego = Convert.ToInt32(selected_Category.Value);
             int sub_catego = Convert.ToInt32(selected_SubCategory.Value);
             int produc = Convert.ToInt32(selected_producer.Value);
-            int color = Convert.ToInt32(selected_Color.Value); int siz = Convert.ToInt32(selected_Size.Value);
+            int color = Convert.ToInt32(selected_Color.Value);
+            int siz = Convert.ToInt32(selected_Size.Value);
             string Specif = Specification.Text;
 
             //IsMatch
@@ -245,7 +246,7 @@ namespace etgarPlus.Pages
                     if (elseProducer.Value.Length == 0)
                         Response.Write("<script language=javascript>alert('הוסף שם יצרן חדש');</script>");
 
-                }
+                }   
                  string fileName="";
                  string path="";
                  string fileName2 = "";
@@ -257,11 +258,9 @@ namespace etgarPlus.Pages
                      Console.WriteLine(fileName);
                      fileName2 = Global.uploadImage(path, produc + "_" + DateTime.Now.ToString().Replace("/", "_"));
                  }
-                //NewBike.AddNewBike(NewBike.getMaxId(), catego, sub_catego, produc, siz, Specification.Text, color, Convert.ToDouble(RetailPrice.Value), Convert.ToDouble(RegularPrice.Value), Convert.ToDouble(ClubPrice.Value), Convert.ToInt32(Quantity.Value), FileUpload1.FileName, Model.Value);
                 NewBike.AddNewBike(NewBike.getMaxId(), catego, sub_catego, produc, siz, Specification.Text, color, Convert.ToDouble(RetailPrice.Value), Convert.ToDouble(RegularPrice.Value), Convert.ToDouble(ClubPrice.Value), Convert.ToInt32(Quantity.Value), fileName2, Model.Value);
                 
                 resetButton_Click(sender, e);
-               // clearSelect();
 
 
             }
@@ -285,42 +284,8 @@ namespace etgarPlus.Pages
         {
             RetailPrice.Value = "הצליח";
         }
-        protected void UplodeImg_Click(object sender, EventArgs e)
-        {
+      
 
-
-
-
-            // lblimg_name.Text = FileUpload1.FileName.ToString();
-            /*if (Session["image"] != null)
-            {
-                img1.ImageUrl = Session["image"].ToString();
-            }*/
-        }
-
-        protected void Browse_Click(object sender, EventArgs e)
-        {
-            //// Create an instance of the open file dialog box.
-            //OpenFileDialog openFileDialog1 = new OpenFileDialog();
-            
-            //openFileDialog1.Multiselect = false;
-
-            //// Call the ShowDialog method to show the dialog box.
-            //bool? userClickedOK = openFileDialog1.ShowDialog();
-
-            //// Process input if the user clicked OK.
-            //if (userClickedOK == true)
-            //{
-            //    // Open the selected file to read.
-            //    System.IO.Stream fileStream = openFileDialog1.File.OpenRead();
-
-            //    using (System.IO.StreamReader reader = new System.IO.StreamReader(fileStream))
-            //    {
-            //        // Read the first line from the file and write it the textbox.
-            //        tbResults.Text = reader.ReadLine();
-            //    }
-            //    fileStream.Close();
-            //}
-        }
+     
     }
 }

@@ -74,9 +74,7 @@
                 <asp:Label ID="Price" runat="server" Text="test"></asp:Label>
                 <asp:Label ID="PriceLabel2" runat="server" Text="שח"></asp:Label>
                 <br />
-                 <label class="MyAccountLabel">פרטים נוספים:</label>
-                 <asp:TextBox ID="Specification"  textmode="MultiLine" runat="server"></asp:TextBox>
-       
+               
                 <%if (Session["Email"] != null)
                   { %>
                 <br /><br /><br /><hr />
@@ -86,6 +84,9 @@
                 <asp:Button id="addButton" CssClass="propertieItems" runat="server" OnClick="addToList_Click" Text="הוסף לסל" Width="125px" BorderColor="Black" BorderWidth="1" Height="22" />
                 <%} %>
             </div>
+<%--              <label class="MyAccountLabel">פרטים נוספים:</label>--%>
+                 <asp:TextBox ID="Specification" CssClass="Specification" ReadOnly="true"   textmode="MultiLine" runat="server"></asp:TextBox>
+       
         </div>
         <div id="fade" class="black_overlay" onclick="closeProperties()" runat="server"></div>
 
